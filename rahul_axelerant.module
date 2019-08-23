@@ -1,0 +1,45 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+/**
+ * @file
+ * Add a field to an existing form.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+
+function rahul_axelerant_form_system_site_information_settings_alter(&$form, $form_state)
+{
+
+    $siteapi_key = \Drupal::config('rahul_axelerant.settings')->get('siteapi_key');
+    $form['siteapi_key'] = array(
+        '#type' => 'textfield',
+        '#title' => t("Site API Key."),
+        '#default_value' => isset($siteapi_key)&&!empty($siteapi_key)? $siteapi_key : "No API Key yet",
+        '#placeholder' => "No API Key yet",
+    );
+    if($siteapi_key!=""){
+        $form['actions']['submit']['#value'] = t('Update Configuration');
+    }
+
+    foreach (array_keys($form['actions']) as $action) {
+        if (isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+            $form['actions'][$action]['#submit'][] = 'rahul_axelerant_site_information_submit';
+        }
+    }
+
+}
+
+function rahul_axelerant_site_information_submit(array $form, FormStateInterface &$form_state)
+{
+    $siteapi_key = \Drupal::config('rahul_axelerant.settings')->get('siteapi_key');  
+    $siteapi_key_new = $form_state->getvalue('siteapi_key');
+    if($siteapi_key_new != $siteapi_key){
+      $config = \Drupal::service('config.factory')->getEditable('rahul_axelerant.settings');
+      $config->set('siteapi_key', $siteapi_key_new)->save();
+      drupal_set_message(t('Site API Key has been saved with '.$siteapi_key_new));
+    }
+    
+
+}

@@ -1,0 +1,7 @@
+name: rahulaxelerant
+type: module
+description: 'A custom module created by Rahul'
+version: '8.x'
+core: '8.x'
+project: 'rahul_axelerant_admin'
+datestamp: 1566558623
