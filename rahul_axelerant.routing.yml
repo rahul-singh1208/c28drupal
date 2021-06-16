@@ -1,5 +1,5 @@
 rahul_axelerant.allsitemaps:
-  path: 'page_json/{apikey}/{nid}'
+  path: '/page_json/{apikey}/{nid}'
   defaults:
     _controller: 'Drupal\rahul_axelerant\Controller\PageController::getnodedetails'
     _title: 'Page Node Details'
