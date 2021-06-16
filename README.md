@@ -1,6 +1,5 @@
 # This module will alter the existing Drupal "Site Information" form.
  
- 
 Features
 --------
 * Creates a new form text field named "Site API Key" to the "Site Information" form with the default value of “No API Key yet”.
