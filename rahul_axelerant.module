@@ -1,9 +1,5 @@
 <?php
 use Drupal\Core\Form\FormStateInterface;
-/**
- * @file
- * Add a field to an existing form.
- */
 
 /**
  * Implements hook_form_FORM_ID_alter().
